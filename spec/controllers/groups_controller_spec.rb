@@ -18,7 +18,7 @@ require 'rails_helper'
 # Message expectations are only used when there is no simpler way to specify
 # that an instance is receiving a specific message.
 
-RSpec.describe GroupsController, type: :controller do
+RSpec.describe GroupsController, :type => :controller do
 
   # This should return the minimal set of attributes required to create a valid
   # Group. As you add validations to Group, be sure to
@@ -36,7 +36,7 @@ RSpec.describe GroupsController, type: :controller do
   # GroupsController. Be sure to keep this updated too.
   let(:valid_session) { {} }
 
-  describe "GET #index" do
+  describe "GET index" do
     it "assigns all groups as @groups" do
       group = Group.create! valid_attributes
       get :index, {}, valid_session
@@ -44,7 +44,7 @@ RSpec.describe GroupsController, type: :controller do
     end
   end
 
-  describe "GET #show" do
+  describe "GET show" do
     it "assigns the requested group as @group" do
       group = Group.create! valid_attributes
       get :show, {:id => group.to_param}, valid_session
@@ -52,23 +52,8 @@ RSpec.describe GroupsController, type: :controller do
     end
   end
 
-  describe "GET #new" do
-    it "assigns a new group as @group" do
-      get :new, {}, valid_session
-      expect(assigns(:group)).to be_a_new(Group)
-    end
-  end
-
-  describe "GET #edit" do
-    it "assigns the requested group as @group" do
-      group = Group.create! valid_attributes
-      get :edit, {:id => group.to_param}, valid_session
-      expect(assigns(:group)).to eq(group)
-    end
-  end
-
-  describe "POST #create" do
-    context "with valid params" do
+  describe "POST create" do
+    describe "with valid params" do
       it "creates a new Group" do
         expect {
           post :create, {:group => valid_attributes}, valid_session
@@ -87,7 +72,7 @@ RSpec.describe GroupsController, type: :controller do
       end
     end
 
-    context "with invalid params" do
+    describe "with invalid params" do
       it "assigns a newly created but unsaved group as @group" do
         post :create, {:group => invalid_attributes}, valid_session
         expect(assigns(:group)).to be_a_new(Group)
@@ -100,8 +85,8 @@ RSpec.describe GroupsController, type: :controller do
     end
   end
 
-  describe "PUT #update" do
-    context "with valid params" do
+  describe "PUT update" do
+    describe "with valid params" do
       let(:new_attributes) {
         skip("Add a hash of attributes valid for your model")
       }
@@ -126,7 +111,7 @@ RSpec.describe GroupsController, type: :controller do
       end
     end
 
-    context "with invalid params" do
+    describe "with invalid params" do
       it "assigns the group as @group" do
         group = Group.create! valid_attributes
         put :update, {:id => group.to_param, :group => invalid_attributes}, valid_session
@@ -141,7 +126,7 @@ RSpec.describe GroupsController, type: :controller do
     end
   end
 
-  describe "DELETE #destroy" do
+  describe "DELETE destroy" do
     it "destroys the requested group" do
       group = Group.create! valid_attributes
       expect {
